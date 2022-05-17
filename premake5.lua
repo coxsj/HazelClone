@@ -1,13 +1,14 @@
 workspace "Hazel"
 	architecture "x64"
+	startproject "Sandbox"
 
 	configurations
 	{
-		"debug",
-		"release",
-		"dist"
+		"Debug",
+		"Release",
+		"Dist"
 	}
-
+	
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 project "Hazel"
@@ -37,7 +38,7 @@ project "Hazel"
 		"HZ_BUILD_DLL",
 	}
 	postbuildcommands{
-		("{ COPY } %{cfg.buildtarget.relpath}) ../bin/" .. outputdir .. "/Sandbox")
+		("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
 	}
 
 	filter "configurations:Debug"
@@ -51,8 +52,8 @@ project "Hazel"
 		optimize "On"
 
 project "Sandbox"
-	locaation "Sandbox"
-	kind "consoleApp"
+	location "Sandbox"
+	kind "ConsoleApp"
 	language "C++"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -63,8 +64,8 @@ project "Sandbox"
 	}
 	includedirs
 	{
-		"%{prj.name}/vendor/spdlog/include/",
-		"Hazel/src"
+		"Hazel/vendor/spdlog/include",
+		"Hazel/src/"
 	}
 
 	links{
