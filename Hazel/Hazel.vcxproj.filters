@@ -4,28 +4,48 @@
     <Filter Include="Hazel">
       <UniqueIdentifier>{99294D0D-053E-75BE-CEBF-181E3A9371EF}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Hazel\Headers">
+      <UniqueIdentifier>{3bfdbbd3-d309-4926-82fa-f88a325420af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hazel\src">
+      <UniqueIdentifier>{70412cb2-6d19-4398-949f-2ff79917754a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Hazel\application.h">
-      <Filter>Hazel</Filter>
+      <Filter>Hazel\Headers</Filter>
     </ClInclude>
     <ClInclude Include="src\Hazel\core.h">
-      <Filter>Hazel</Filter>
+      <Filter>Hazel\Headers</Filter>
     </ClInclude>
     <ClInclude Include="src\Hazel\entrypoint.h">
-      <Filter>Hazel</Filter>
+      <Filter>Hazel\Headers</Filter>
     </ClInclude>
     <ClInclude Include="src\Hazel\log.h">
-      <Filter>Hazel</Filter>
+      <Filter>Hazel\Headers</Filter>
     </ClInclude>
-    <ClInclude Include="src\hazel.h" />
+    <ClInclude Include="events\applicationEvent.h">
+      <Filter>Hazel\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="events\event.h">
+      <Filter>Hazel\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\hazel.h">
+      <Filter>Hazel\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="events\keyEvent.h">
+      <Filter>Hazel\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="events\mouseEvent.h">
+      <Filter>Hazel\Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Hazel\application.cpp">
-      <Filter>Hazel</Filter>
-    </ClCompile>
     <ClCompile Include="src\Hazel\log.cpp">
       <Filter>Hazel</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Hazel\application.cpp">
+      <Filter>Hazel\src</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

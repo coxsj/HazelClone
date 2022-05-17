@@ -3,6 +3,7 @@
 #include <memory>
 #include "core.h"
 #include "spdlog/spdlog.h"
+#include "spdlog/fmt/ostr.h"
 
 namespace Hazel {
 	class HAZEL_API Log{
@@ -24,7 +25,7 @@ namespace Hazel {
 #define HZ_CORE_ERROR(...)     ::Hazel::Log::GetCoreLogger()->error(__VA_ARGS__)
 #define HZ_CORE_FATALR(...)    ::Hazel::Log::GetCoreLogger()->fatal(__VA_ARGS__)
 
-//Core log macros
+//Client log macros
 #define HZ_CLIENT_TRACE(...)   ::Hazel::Log::GetClientLogger()-_>trace(__VA_ARGS__)
 #define HZ_CLIENT_INFO(...)    ::Hazel::Log::GetClientLogger()->info(__VA_ARGS__)
 #define HZ_CLIENT_WARN(...)    ::Hazel::Log::GetClientLogger()->warn(__VA_ARGS__)
