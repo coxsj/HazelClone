@@ -15,7 +15,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "Hazel/vendor/GLFW/include"
 
 -- This works like a C++ #include statement. 
--- lua files are found recursively during execution of the main lua premake file
+-- This instructs premake to access the lua premake file in GLFW
 include "Hazel/vendor/GLFW"
 
 project "Hazel"
@@ -41,6 +41,7 @@ project "Hazel"
 	}
 	filter "system:windows"
 		cppdialect "C++17"
+		-- All projects must be compiled with same runtime library options else linker errors.
 		staticruntime "On"
 		systemversion "latest"
 	defines{

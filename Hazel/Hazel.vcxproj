@@ -108,7 +108,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -134,7 +134,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -157,8 +157,8 @@
     <ClInclude Include="src\Hazel\events\keyEvent.h" />
     <ClInclude Include="src\Hazel\events\mouseEvent.h" />
     <ClInclude Include="src\Hazel\log.h" />
-    <ClInclude Include="src\hazel.h" />
     <ClInclude Include="src\Hazel\window.h" />
+    <ClInclude Include="src\hazel.h" />
     <ClInclude Include="src\hzpch.h" />
     <ClInclude Include="src\platform\Windows\windowsWindow.h" />
   </ItemGroup>
@@ -172,7 +172,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="vendor\GLFW\GLFW.vcxproj">
-      <Project>{154B857C-0182-860D-AA6E-6C109684020F}</Project>
+      <Project>{154b857c-0182-860d-aa6e-6c109684020f}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

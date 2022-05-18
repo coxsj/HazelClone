@@ -2,7 +2,7 @@
 
 #include "hzpch.h"
 
-#include "event.h"
+#include "Hazel/events/event.h"
 
 namespace Hazel {
 
@@ -41,7 +41,7 @@ namespace Hazel {
 			ss << "KeyReleasedEvent: " << m_KeyCode;
 			return ss.str();
 		}
-			EVENT_CLASS_TYPE(kKeyReleased)
+		EVENT_CLASS_TYPE(kKeyReleased)
 	};
 
 }

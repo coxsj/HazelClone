@@ -24,6 +24,15 @@ namespace Hazel {
 		unsigned int m_Width, m_Height;
 	};
 
+	class WindowCloseEvent : public Event
+	{
+	public:
+		WindowCloseEvent() = default;
+
+		EVENT_CLASS_TYPE(kWindowClose)
+		EVENT_CLASS_CATEGORY(kEventCategoryApplication)
+	};
+
 	class HAZEL_API AppTickEvent : public Event {
 		AppTickEvent(){}
 

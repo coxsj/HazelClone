@@ -12,13 +12,12 @@ namespace Hazel {
 		virtual ~WindowsWindow() { shutdown(); }
 
 		void onUpdate() override;
-
-		inline unsigned int GetWidth() const override { return m_Data.width; }
-		inline unsigned int GetHeight() const override { return m_Data.height; }
+		unsigned int GetWidth() const override { return m_Data.width; }
+		unsigned int GetHeight() const override { return m_Data.height; }
 
 		// Window Attributes
-		inline void setEventCallback(const EventCallbackFn& callback) override { 
-			m_Data.EventCallback = callback; 
+		void setEventCallback(const EventCallbackFn& callback) override { 
+			m_Data.eventCallback = callback; 
 		}
 		void setVSync(bool enabled) override;
 		bool WindowsWindow::isVSync() const override{ return m_Data.VSync; }
@@ -29,13 +28,14 @@ namespace Hazel {
 	private:
 		GLFWwindow* m_Window;
 
+		// This struct will be used to pass data to GLFW during Window events
 		struct WindowData {
 			std::string title;
 			unsigned int width;
 			unsigned int height;
 			bool VSync;
 
-			EventCallbackFn EventCallback;
+			EventCallbackFn eventCallback;
 		};
 
 		WindowData m_Data;

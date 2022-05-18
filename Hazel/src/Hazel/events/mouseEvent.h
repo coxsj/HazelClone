@@ -2,13 +2,13 @@
 
 #include "hzpch.h"
 
-#include "event.h"
+#include "Hazel/events/event.h"
 namespace Hazel {
 
 	class HAZEL_API MouseMovedEvent : public Event {
+	public:
 		MouseMovedEvent(float x, float y) : m_MouseX(x), m_MouseY(y) {}
 
-		public:
 		inline float GetX() const { return m_MouseX; }
 		inline float GetY() const { return m_MouseY; }
 
@@ -25,6 +25,7 @@ namespace Hazel {
 	};
 
 	class HAZEL_API MouseScrolledEvent : public Event {
+	public:
 		MouseScrolledEvent(float xOffset, float yOffset) 
 			: m_XOffset(xOffset), m_YOffset(m_YOffset) {}
 
@@ -46,7 +47,7 @@ namespace Hazel {
 
 	class HAZEL_API MouseButtonEvent : public Event {
 	public:
-		inline float GetMouseButton() const { return m_Button; }
+		int GetMouseButton() const { return m_Button; }
 		EVENT_CLASS_CATEGORY(kEventCategoryMouse | kEventCategoryInput)
 	protected:
 		MouseButtonEvent(int button) : m_Button(button) {}

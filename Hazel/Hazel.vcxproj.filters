@@ -39,11 +39,11 @@
     <ClInclude Include="src\Hazel\log.h">
       <Filter>Hazel</Filter>
     </ClInclude>
-    <ClInclude Include="src\hazel.h" />
-    <ClInclude Include="src\hzpch.h" />
     <ClInclude Include="src\Hazel\window.h">
       <Filter>Hazel</Filter>
     </ClInclude>
+    <ClInclude Include="src\hazel.h" />
+    <ClInclude Include="src\hzpch.h" />
     <ClInclude Include="src\platform\Windows\windowsWindow.h">
       <Filter>platform\Windows</Filter>
     </ClInclude>

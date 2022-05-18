@@ -8,31 +8,33 @@
 #include "GLFW/glfw3.h"
 
 namespace Hazel {
+
+#define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
+
 	Application::Application() {
 		std::cout << "Welcome to HazelClone Game Engine\n";
 		m_Window = std::unique_ptr<Window>(Window::Create());
+		m_Window->setEventCallback(BIND_EVENT_FN(onEvent));
 	}
-	
+	void Application::onEvent(Event& e)
+	{
+		EventDispatcher  dispatcher(e);
+		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
+		
+		HZ_CORE_TRACE("{0}", e);
+	}
+
 	void Application::run() {
-		WindowResizeEvent e(1280, 720);
-		if (e.IsInCategory(kEventCategoryApplication)) HZ_CORE_TRACE(e);
 
 		while (m_Running) {
-			HZ_CORE_TRACE(e);
 			glClearColor(1, 0, 1, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
 			m_Window->onUpdate();
 		}
-		if (e.IsInCategory(kEventCategoryInput)) HZ_CORE_TRACE(e);
-
-
-		long long ctr{ 0 };
-		while (true) {
-			if (ctr++ > 100000000) {
-				ctr = 0;
-				std::cout << ".";
-			}
-		}
 	}
 
+	bool Application::OnWindowClose(WindowCloseEvent& e) {
+		m_Running = false;
+		return true;
+	}
 }
