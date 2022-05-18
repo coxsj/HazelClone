@@ -1,5 +1,6 @@
 
-#include <iostream>
+#include "hzpch.h"
+
 #include "hazel.h"
 
 // This is how the client user creates their own application using Hazel

@@ -4,48 +4,60 @@
     <Filter Include="Hazel">
       <UniqueIdentifier>{99294D0D-053E-75BE-CEBF-181E3A9371EF}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Hazel\Headers">
-      <UniqueIdentifier>{3bfdbbd3-d309-4926-82fa-f88a325420af}</UniqueIdentifier>
+    <Filter Include="Hazel\events">
+      <UniqueIdentifier>{7D033849-6966-C7ED-12EC-FFA3FE2D9370}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Hazel\src">
-      <UniqueIdentifier>{70412cb2-6d19-4398-949f-2ff79917754a}</UniqueIdentifier>
+    <Filter Include="platform">
+      <UniqueIdentifier>{4A63C33C-3630-1E48-5F49-0CF04B7553D6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform\Windows">
+      <UniqueIdentifier>{84B77CA1-70B0-9BF3-99E2-8078853A7BFF}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Hazel\application.h">
-      <Filter>Hazel\Headers</Filter>
+      <Filter>Hazel</Filter>
     </ClInclude>
     <ClInclude Include="src\Hazel\core.h">
-      <Filter>Hazel\Headers</Filter>
+      <Filter>Hazel</Filter>
     </ClInclude>
     <ClInclude Include="src\Hazel\entrypoint.h">
-      <Filter>Hazel\Headers</Filter>
+      <Filter>Hazel</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Hazel\events\applicationEvent.h">
+      <Filter>Hazel\events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Hazel\events\event.h">
+      <Filter>Hazel\events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Hazel\events\keyEvent.h">
+      <Filter>Hazel\events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Hazel\events\mouseEvent.h">
+      <Filter>Hazel\events</Filter>
     </ClInclude>
     <ClInclude Include="src\Hazel\log.h">
-      <Filter>Hazel\Headers</Filter>
+      <Filter>Hazel</Filter>
     </ClInclude>
-    <ClInclude Include="events\applicationEvent.h">
-      <Filter>Hazel\Headers</Filter>
+    <ClInclude Include="src\hazel.h" />
+    <ClInclude Include="src\hzpch.h" />
+    <ClInclude Include="src\Hazel\window.h">
+      <Filter>Hazel</Filter>
     </ClInclude>
-    <ClInclude Include="events\event.h">
-      <Filter>Hazel\Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="src\hazel.h">
-      <Filter>Hazel\Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="events\keyEvent.h">
-      <Filter>Hazel\Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="events\mouseEvent.h">
-      <Filter>Hazel\Headers</Filter>
+    <ClInclude Include="src\platform\Windows\windowsWindow.h">
+      <Filter>platform\Windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Hazel\application.cpp">
+      <Filter>Hazel</Filter>
+    </ClCompile>
     <ClCompile Include="src\Hazel\log.cpp">
       <Filter>Hazel</Filter>
     </ClCompile>
-    <ClCompile Include="src\Hazel\application.cpp">
-      <Filter>Hazel\src</Filter>
+    <ClCompile Include="src\hzpch.cpp" />
+    <ClCompile Include="src\platform\Windows\windowsWindow.cpp">
+      <Filter>platform\Windows</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

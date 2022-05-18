@@ -9,21 +9,35 @@ workspace "Hazel"
 	}
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Include directories relative to the root folder (solution directory)
+-- This is a lua table stucture
+IncludeDir = {}
+IncludeDir["GLFW"] = "Hazel/vendor/GLFW/include"
+
+-- This works like a C++ #include statement. 
+-- lua files are found recursively during execution of the main lua premake file
+include "Hazel/vendor/GLFW"
+
 project "Hazel"
 	location "Hazel"
 	kind "SharedLib"
 	language "C++"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
-	files
-	{
+	pchheader "hzpch.h"
+	pchsource "Hazel/src/hzpch.cpp"
+	files{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp"
 	}
-	includedirs
-	{
-		"%{prj.name}/src/",
-		"%{prj.name}/vendor/spdlog/include/"
+	includedirs{
+		"%{prj.name}/src",
+		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}"
+	}
+	links{
+		"GLFW",
+		"opengl32.lib"
 	}
 	filter "system:windows"
 		cppdialect "C++17"
@@ -52,15 +66,13 @@ project "Sandbox"
 	language "C++"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
-	files
-	{
+	files{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp"
 	}
-	includedirs
-	{
+	includedirs	{
 		"Hazel/vendor/spdlog/include",
-		"Hazel/src/"
+		"Hazel/src"
 	}
 	links{
 		"Hazel"

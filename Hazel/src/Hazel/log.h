@@ -1,7 +1,8 @@
 #pragma once
 
-#include <memory>
-#include "core.h"
+#include "hzpch.h"
+
+#include "Hazel/core.h"
 #include "spdlog/spdlog.h"
 #include "spdlog/fmt/ostr.h"
 

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "core.h"
-
+#include "Hazel/core.h"
+#include "Hazel/window.h"
 
 namespace Hazel {
 	class HAZEL_API Application
@@ -11,6 +11,10 @@ namespace Hazel {
 		virtual ~Application() {}
 
 		void run();
+
+	private:
+		std::unique_ptr<Window> m_Window;
+		bool m_Running = true;
 	};
 	//To be defined in client
 	Application* createApplication();

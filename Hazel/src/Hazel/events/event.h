@@ -1,9 +1,8 @@
 #pragma once
 
-#include <string>
-#include <functional>
+#include "hzpch.h"
 
-#include "Hazel/core.h"
+#include "core.h"
 
 namespace Hazel {
 	// Events are currently blocking
