@@ -13,10 +13,12 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- This is a lua table stucture
 IncludeDir = {}
 IncludeDir["GLFW"] = "Hazel/vendor/GLFW/include"
+IncludeDir["glad"] = "Hazel/vendor/glad/include"
 
 -- This works like a C++ #include statement. 
 -- This instructs premake to access the lua premake file in GLFW
 include "Hazel/vendor/GLFW"
+include "Hazel/vendor/glad"
 
 project "Hazel"
 	location "Hazel"
@@ -33,10 +35,12 @@ project "Hazel"
 	includedirs{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.glad}"
 	}
 	links{
 		"GLFW",
+		"glad",
 		"opengl32.lib"
 	}
 	filter "system:windows"
@@ -47,6 +51,7 @@ project "Hazel"
 	defines{
 		"HZ_PLATFORM_WINDOWS",
 		"HZ_BUILD_DLL",
+		"GLFW_INCLUDE_NONE" -- Supresses glfw from loading opengl headers
 	}
 	postbuildcommands{
 		("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")

@@ -4,6 +4,8 @@
 #include "Hazel/events/keyEvent.h"
 #include "Hazel/events/mouseEvent.h"
 
+#include "glad/glad.h"
+
 namespace Hazel {
 	//Global variables
 	static bool s_GLFWInitialized = false;
@@ -43,6 +45,10 @@ namespace Hazel {
 		m_Window = glfwCreateWindow(static_cast<int>(props.width), static_cast<int>(props.height),
 			m_Data.title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(m_Window);
+		//Initialize glad
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		HZ_CORE_ASSERT(status, "Could not initialize glad!");
+
 		// User pointer used in event callbacks
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		setVSync(true);
