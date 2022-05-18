@@ -48,14 +48,14 @@ project "Hazel"
 		-- All projects must be compiled with same runtime library options else linker errors.
 		staticruntime "On"
 		systemversion "latest"
-	defines{
-		"HZ_PLATFORM_WINDOWS",
-		"HZ_BUILD_DLL",
-		"GLFW_INCLUDE_NONE" -- Supresses glfw from loading opengl headers
-	}
-	postbuildcommands{
-		("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
-	}
+		defines{
+			"HZ_PLATFORM_WINDOWS",
+			"HZ_BUILD_DLL",
+			"GLFW_INCLUDE_NONE" -- Supresses glfw from loading opengl headers
+		}
+		postbuildcommands{
+			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
+		}
 	filter "configurations:Debug"
 		defines "HZ_DEBUG"
 		buildoptions "/MDd"
