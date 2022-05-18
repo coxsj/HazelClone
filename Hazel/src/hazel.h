@@ -5,6 +5,7 @@
 
 #include "Hazel/application.h"
 #include "Hazel/Log.h"
+#include "Hazel/layer.h"
 
 // Hazel Entry point
 // -----------------

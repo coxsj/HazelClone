@@ -11,16 +11,13 @@ namespace Hazel {
 		WindowsWindow(const WindowProps& props) { init(props); }
 		virtual ~WindowsWindow() { shutdown(); }
 
+		unsigned int GetWidth() const override;
+		unsigned int GetHeight() const override;
+		bool WindowsWindow::isVSync() const override;
 		void onUpdate() override;
-		unsigned int GetWidth() const override { return m_Data.width; }
-		unsigned int GetHeight() const override { return m_Data.height; }
-
-		// Window Attributes
-		void setEventCallback(const EventCallbackFn& callback) override { 
-			m_Data.eventCallback = callback; 
-		}
+		void setEventCallback(const EventCallbackFn& callback) override;
 		void setVSync(bool enabled) override;
-		bool WindowsWindow::isVSync() const override{ return m_Data.VSync; }
+		
 	private:
 		virtual void init(const WindowProps& props);
 		virtual void shutdown();

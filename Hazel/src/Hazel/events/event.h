@@ -40,8 +40,7 @@ namespace Hazel {
 		virtual std::string ToString() const { return GetName(); }
 
 		inline bool IsInCategory(EventCategory category) { return GetCategoryFlags() & category; }
-	protected:
-		bool m_handled = false;
+		bool handled = false;
 	};
 
 	class EventDispatcher {
@@ -50,9 +49,9 @@ namespace Hazel {
 		EventDispatcher(Event& event) :m_Event(event){}
 
 		template<typename T, typename F>
-		bool Dispatch(const F& func) {
+		bool dispatch(const F& func) {
 			if (m_Event.GetEventType() == T::GetStaticType()) {
-				m_Event.m_handled = func(static_cast<T&>(m_Event));
+				m_Event.handled = func(static_cast<T&>(m_Event));
 				return true;
 			}
 			return false;

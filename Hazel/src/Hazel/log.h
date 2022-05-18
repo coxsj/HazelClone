@@ -15,8 +15,8 @@ namespace Hazel {
 	public:
 		static void init();
 
-		inline static std::shared_ptr<spdlog::logger>& GetCoreLogger() { return s_CoreLogger; }
-		inline static std::shared_ptr<spdlog::logger>& GetClientLogger() { return s_ClientLogger; }
+		static std::shared_ptr<spdlog::logger>& GetClientLogger();
+		static std::shared_ptr<spdlog::logger>& GetCoreLogger();
 	};
 }
 //Core log macros
@@ -24,11 +24,11 @@ namespace Hazel {
 #define HZ_CORE_INFO(...)      ::Hazel::Log::GetCoreLogger()->info(__VA_ARGS__)
 #define HZ_CORE_WARN(...)      ::Hazel::Log::GetCoreLogger()->warn(__VA_ARGS__)
 #define HZ_CORE_ERROR(...)     ::Hazel::Log::GetCoreLogger()->error(__VA_ARGS__)
-#define HZ_CORE_FATALR(...)    ::Hazel::Log::GetCoreLogger()->fatal(__VA_ARGS__)
+#define HZ_CORE_FATAL(...)     ::Hazel::Log::GetCoreLogger()->fatal(__VA_ARGS__)
 
 //Client log macros
-#define HZ_CLIENT_TRACE(...)   ::Hazel::Log::GetClientLogger()-_>trace(__VA_ARGS__)
+#define HZ_CLIENT_TRACE(...)   ::Hazel::Log::GetClientLogger()->trace(__VA_ARGS__)
 #define HZ_CLIENT_INFO(...)    ::Hazel::Log::GetClientLogger()->info(__VA_ARGS__)
 #define HZ_CLIENT_WARN(...)    ::Hazel::Log::GetClientLogger()->warn(__VA_ARGS__)
 #define HZ_CLIENT_ERROR(...)   ::Hazel::Log::GetClientLogger()->error(__VA_ARGS__)
-#define HZ_CLIENT_FATALR(...)  ::Hazel::Log::GetClientLogger()->fatal(__VA_ARGS__)
+#define HZ_CLIENT_FATAL(...)   ::Hazel::Log::GetClientLogger()->fatal(__VA_ARGS__)

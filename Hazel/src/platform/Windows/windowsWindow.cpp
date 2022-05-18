@@ -5,24 +5,32 @@
 #include "Hazel/events/mouseEvent.h"
 
 namespace Hazel {
+	//Global variables
 	static bool s_GLFWInitialized = false;
 
+	//Global functions
 	static void GLFWErrorCallback(int error, const char* description) {
 		HZ_CORE_ERROR("GLFW Error ({0}): {1}", error, description);
 	}
 
-	// Note this is the implementation of the base class Create method.
-	// Each platform implements its own version of this.
 	Window* Window::Create(const WindowProps& props) {
+		// Note this is the implementation of the base class Create method.
+		// Each platform implements its own version of this.
 		return new WindowsWindow(props);
 	}
 	
+	unsigned int WindowsWindow::GetHeight() const { 
+		return m_Data.height; 
+	}
+	unsigned int WindowsWindow::GetWidth() const { 
+		return m_Data.width; 
+	}
 	void WindowsWindow::init(const WindowProps& props) {
 		m_Data.title = props.title;
 		m_Data.width = props.width;
 		m_Data.height = props.height;
 
-		HZ_CORE_INFO("Creating window {0} ({1}, {2}", props.title, props.width, props.height);
+		HZ_CORE_INFO("Creating window {0}({1}, {2})", props.title, props.width, props.height);
 
 		if (!s_GLFWInitialized) {
 			//TODO glfwTerminate on system shutdown
@@ -31,7 +39,7 @@ namespace Hazel {
 			glfwSetErrorCallback(GLFWErrorCallback);
 			s_GLFWInitialized = true;
 		}
-		
+		//Create the window
 		m_Window = glfwCreateWindow(static_cast<int>(props.width), static_cast<int>(props.height),
 			m_Data.title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(m_Window);
@@ -41,9 +49,17 @@ namespace Hazel {
 
 		// Set GLFW callbacks
 		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height) {
+			// When a window size event occurs on m_Window, GLFW runs this lambda function 
+			// i.e GLFW executes this window resize event callback.
+			// This routine creates a WindowResizeEvent event and then calls the event callback 
+			// function which was registered in application.cpp using
+			// m_Window->setEventCallback(BIND_EVENT_FN(onEvent));
+			// In all of this, the event parameter (a ref) gets passed along.
+			// The application's onEvent method dispatches the event.
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 			data.width = width;
 			data.height = height;
+			// Create the corresponding Hazel event
 			WindowResizeEvent event(width, height);
 			data.eventCallback(event);
 		});
@@ -112,12 +128,15 @@ namespace Hazel {
 			data.eventCallback(event);
 			});
 	}
-	void WindowsWindow::shutdown() {
-		glfwDestroyWindow(m_Window);
+	bool WindowsWindow::isVSync() const {
+		return m_Data.VSync; 
 	}
 	void WindowsWindow::onUpdate() {
 		glfwPollEvents();
 		glfwSwapBuffers(m_Window);
+	}
+	void WindowsWindow::setEventCallback(const EventCallbackFn& callback)  {
+		m_Data.eventCallback = callback;
 	}
 	void WindowsWindow::setVSync(bool enabled) {
 		if (enabled) glfwSwapInterval(1);
@@ -125,4 +144,8 @@ namespace Hazel {
 
 		m_Data.VSync = enabled;
 	}
+	void WindowsWindow::shutdown() {
+		glfwDestroyWindow(m_Window);
+	}
+	
 }
