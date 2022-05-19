@@ -11,17 +11,19 @@ project "glad"
 		"include/KHR/khrplatform.h",
 		"src/glad.c"
 	}
+
 	includedirs{
 		"include"
 	}
 	filter "system:windows"
 		systemversion "latest"
-		staticruntime "On"
+		staticruntime "Off"
 
 	filter "configurations:Debug"
-		buildoptions "/MDd"
+		runtime "Debug"
 		symbols "On"
+
 	filter "configurations:Release"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 
