@@ -2,7 +2,7 @@
 
 #include "hzpch.h"
 
-#include "core.h"
+#include "Hazel/core.h"
 
 namespace Hazel {
 	// Events are currently blocking
@@ -12,7 +12,7 @@ namespace Hazel {
 		kNone = 0,
 		kWindowClose, kWindowResize, kWindowFocus, kWindowLostFocus, kWindowMoved,
 		kAppTick, kAppUpdate, kAppRender,
-		kKeyPressed, kKeyReleased,
+		kKeyPressed, kKeyReleased, kKeyTyped,
 		kMouseButtonPressed, kMouseButtonReleased, kMouseMoved, kMouseScrolled
 	};
 	// Categories enable (fast & efficient) filtering of events
