@@ -7,6 +7,7 @@ class ExampleLayer : public Hazel::Layer {
 public:
 	ExampleLayer() : Layer("Example"){}
 
+
 	void onUpdate() override {
 		HZ_CLIENT_INFO("ExampleLayer::Update");
 	}
@@ -23,6 +24,7 @@ public:
 	Sandbox() { 
 		std::cout << "Sandbox ctor\n"; 
 		PushLayer(new ExampleLayer());
+		PushOverlay(new Hazel::ImguiLayer());
 	}
 	~Sandbox(){}
 };

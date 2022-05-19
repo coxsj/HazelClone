@@ -8,10 +8,14 @@ namespace Hazel {
 
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 
+	Application* Application::s_instance = nullptr;
+
 	Application::Application() : m_Running(true) {
-		std::cout << "Welcome to HazelClone Game Engine\n";
+		HZ_CORE_ASSERT(!s_instance, "Application already exists!");
+		s_instance = this;
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->setEventCallback(BIND_EVENT_FN(onEvent));
+		std::cout << "Welcome to HazelClone Game Engine\n";
 	}
 	void Application::onEvent(Event& e)
 	{
@@ -31,9 +35,11 @@ namespace Hazel {
 	}
 	void Application::PushLayer(Layer* layer) {
 		m_layerStack.PushLayer(layer);
+		layer->onAttach();
 	}
-	void Application::PushOverlay(Layer* overlay) {
-		m_layerStack.PushOverlay(overlay);
+	void Application::PushOverlay(Layer* layer) {
+		m_layerStack.PushOverlay(layer);
+		layer->onAttach();
 	}
 	void Application::run() {
 

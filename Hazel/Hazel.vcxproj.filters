@@ -7,8 +7,14 @@
     <Filter Include="Hazel\events">
       <UniqueIdentifier>{7D033849-6966-C7ED-12EC-FFA3FE2D9370}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Hazel\imgui">
+      <UniqueIdentifier>{C345A29D-2FFB-1A93-B8EF-146A24A41197}</UniqueIdentifier>
+    </Filter>
     <Filter Include="platform">
       <UniqueIdentifier>{4A63C33C-3630-1E48-5F49-0CF04B7553D6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform\OpenGL">
+      <UniqueIdentifier>{3E351A86-AAC0-874A-B3D1-0A3F1FDCE34A}</UniqueIdentifier>
     </Filter>
     <Filter Include="platform\Windows">
       <UniqueIdentifier>{84B77CA1-70B0-9BF3-99E2-8078853A7BFF}</UniqueIdentifier>
@@ -36,6 +42,9 @@
     <ClInclude Include="src\Hazel\events\mouseEvent.h">
       <Filter>Hazel\events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Hazel\imgui\imguiLayer.h">
+      <Filter>Hazel\imgui</Filter>
+    </ClInclude>
     <ClInclude Include="src\Hazel\layer.h">
       <Filter>Hazel</Filter>
     </ClInclude>
@@ -50,6 +59,9 @@
     </ClInclude>
     <ClInclude Include="src\hazel.h" />
     <ClInclude Include="src\hzpch.h" />
+    <ClInclude Include="src\platform\OpenGL\imguiOpenGLRenderer.h">
+      <Filter>platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\platform\Windows\windowsWindow.h">
       <Filter>platform\Windows</Filter>
     </ClInclude>
@@ -57,6 +69,9 @@
   <ItemGroup>
     <ClCompile Include="src\Hazel\application.cpp">
       <Filter>Hazel</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Hazel\imgui\imguiLayer.cpp">
+      <Filter>Hazel\imgui</Filter>
     </ClCompile>
     <ClCompile Include="src\Hazel\layer.cpp">
       <Filter>Hazel</Filter>
@@ -68,6 +83,9 @@
       <Filter>Hazel</Filter>
     </ClCompile>
     <ClCompile Include="src\hzpch.cpp" />
+    <ClCompile Include="src\platform\OpenGL\imguiOpenGLRenderer.cpp">
+      <Filter>platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="src\platform\Windows\windowsWindow.cpp">
       <Filter>platform\Windows</Filter>
     </ClCompile>

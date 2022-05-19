@@ -6,6 +6,7 @@
 #include "Hazel/application.h"
 #include "Hazel/Log.h"
 #include "Hazel/layer.h"
+#include "Hazel/imgui/imguiLayer.h"
 
 // Hazel Entry point
 // -----------------

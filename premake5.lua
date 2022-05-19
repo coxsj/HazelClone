@@ -14,11 +14,13 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["GLFW"] = "Hazel/vendor/GLFW/include"
 IncludeDir["glad"] = "Hazel/vendor/glad/include"
+IncludeDir["imgui"] = "Hazel/vendor/imgui"
 
 -- This works like a C++ #include statement. 
 -- This instructs premake to access the lua premake file in GLFW
 include "Hazel/vendor/GLFW"
 include "Hazel/vendor/glad"
+include "Hazel/vendor/imgui"
 
 project "Hazel"
 	location "Hazel"
@@ -36,11 +38,13 @@ project "Hazel"
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.glad}"
+		"%{IncludeDir.glad}",
+		"%{IncludeDir.imgui}"
 	}
 	links{
 		"GLFW",
 		"glad",
+		"imgui",
 		"opengl32.lib"
 	}
 	filter "system:windows"
@@ -81,7 +85,8 @@ project "Sandbox"
 	}
 	includedirs	{
 		"Hazel/vendor/spdlog/include",
-		"Hazel/src"
+		"Hazel/src",
+		"%{IncludeDir.imgui}"
 	}
 	links{
 		"Hazel"
