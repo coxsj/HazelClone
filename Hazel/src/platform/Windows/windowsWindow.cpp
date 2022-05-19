@@ -54,6 +54,7 @@ namespace Hazel {
 		setVSync(true);
 
 		// Set GLFW callbacks
+		// ===============
 		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height) {
 			// When a window size event occurs on m_Window, GLFW runs this lambda function 
 			// i.e GLFW executes this window resize event callback.
@@ -103,6 +104,16 @@ namespace Hazel {
 					break;
 			}
 		});
+
+		glfwSetCharCallback(m_Window, [](GLFWwindow* window, unsigned int keycode)
+			{
+				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+
+				KeyTypedEvent event(keycode);
+				data.eventCallback(event);
+			});
+
+
 		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 			switch (action) {

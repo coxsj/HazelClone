@@ -11,8 +11,8 @@ namespace Hazel {
 
 	class HAZEL_API ImguiLayer : public Layer {
 	public:
-		ImguiLayer();
-		~ImguiLayer();
+		ImguiLayer(){}
+		~ImguiLayer(){}
 
 		virtual void onAttach();
 		virtual void onDetach();
