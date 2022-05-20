@@ -18,6 +18,7 @@ namespace Hazel {
 		void setEventCallback(const EventCallbackFn& callback) override;
 		void setVSync(bool enabled) override;
 		
+		virtual void* getNativeWindow() const override { return m_Window; }
 	private:
 		virtual void init(const WindowProps& props);
 		virtual void shutdown();

@@ -157,6 +157,7 @@
     <ClInclude Include="src\Hazel\events\keyEvent.h" />
     <ClInclude Include="src\Hazel\events\mouseEvent.h" />
     <ClInclude Include="src\Hazel\imgui\imguiLayer.h" />
+    <ClInclude Include="src\Hazel\input.h" />
     <ClInclude Include="src\Hazel\layer.h" />
     <ClInclude Include="src\Hazel\layerStack.h" />
     <ClInclude Include="src\Hazel\log.h" />
@@ -165,6 +166,7 @@
     <ClInclude Include="src\hzpch.h" />
     <ClInclude Include="src\platform\OpenGL\imguiOpenGLRenderer.h" />
     <ClInclude Include="src\platform\Windows\windowsWindow.h" />
+    <ClInclude Include="src\platform\Windows\windowsInput.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Hazel\application.cpp" />
@@ -177,6 +179,7 @@
     </ClCompile>
     <ClCompile Include="src\platform\OpenGL\imguiOpenGLRenderer.cpp" />
     <ClCompile Include="src\platform\Windows\windowsWindow.cpp" />
+    <ClCompile Include="src\platform\Windows\windowsInput.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="vendor\GLFW\GLFW.vcxproj">

@@ -3,6 +3,8 @@
 
 #include "Hazel/application.h"
 #include "glad/glad.h"
+#include "Hazel/input.h"
+
 
 namespace Hazel {
 
@@ -49,6 +51,9 @@ namespace Hazel {
 			for (Layer* layer : m_layerStack)
 				layer->onUpdate();
 
+			//Print mouse pos to log
+			auto [x, y] = Input::getMousePosition();
+			HZ_CORE_TRACE("{0}, {1}", x, y);
 			m_Window->onUpdate();
 		}
 		// Where is GLFWTerminate?

@@ -33,6 +33,9 @@ namespace Hazel {
 		virtual void setVSync(bool enabled) = 0;
 		virtual bool isVSync() const = 0;
 
+		//Implementing class can return any kind of window since we specify void*
+		virtual void* getNativeWindow() const = 0;
+
 		static Window* Create(const WindowProps& props = WindowProps());
 	};
 }
