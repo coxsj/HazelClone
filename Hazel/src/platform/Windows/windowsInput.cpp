@@ -28,13 +28,11 @@ namespace Hazel {
 	}
 
 	float WindowsInput::getMouseXImpl()	{
-		auto window = static_cast<GLFWwindow*>(Application::Get().getWindow().getNativeWindow());
 		auto[x, y] = getMousePositionImpl();
 		return x;
 	}
 
 	float WindowsInput::getMouseYImpl()	{
-		auto window = static_cast<GLFWwindow*>(Application::Get().getWindow().getNativeWindow());
 		auto [x, y] = getMousePositionImpl();
 		return y;
 	}
