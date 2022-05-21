@@ -24,7 +24,7 @@ namespace Hazel {
 		EventDispatcher  dispatcher(e);
 		dispatcher.dispatch<WindowCloseEvent>(BIND_EVENT_FN(onWindowClose));
 		
-		HZ_CORE_TRACE("{0}", e);
+		HZ_CORE_TRACE("Application::OnEvent {0}", e);
 
 		for (auto it = m_layerStack.end(); it != m_layerStack.begin(); ) {
 			(*--it)->onEvent(e);
@@ -52,8 +52,9 @@ namespace Hazel {
 				layer->onUpdate();
 
 			//Print mouse pos to log
-			auto [x, y] = Input::getMousePosition();
-			HZ_CORE_TRACE("{0}, {1}", x, y);
+			//auto [x, y] = Input::getMousePosition();
+			//HZ_CORE_TRACE("{0}, {1}", x, y);
+
 			m_Window->onUpdate();
 		}
 		// Where is GLFWTerminate?

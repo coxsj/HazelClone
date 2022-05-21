@@ -4,8 +4,14 @@
 // For Hazel applications
 
 #include "Hazel/application.h"
-#include "Hazel/Log.h"
 #include "Hazel/layer.h"
+#include "Hazel/log.h"
+
+//Input
+#include "Hazel/input.h"
+#include "Hazel/keycodes.h"
+#include "Hazel/mousecodes.h"
+
 #include "Hazel/imgui/imguiLayer.h"
 
 // Hazel Entry point

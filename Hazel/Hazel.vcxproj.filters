@@ -65,9 +65,17 @@
     <ClInclude Include="src\platform\Windows\windowsWindow.h">
       <Filter>platform\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="src\Hazel\input.h" />
     <ClInclude Include="src\platform\Windows\windowsInput.h">
       <Filter>platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Hazel\input.h">
+      <Filter>Hazel</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Hazel\keycodes.h">
+      <Filter>Hazel</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Hazel\mousecodes.h">
+      <Filter>Hazel</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

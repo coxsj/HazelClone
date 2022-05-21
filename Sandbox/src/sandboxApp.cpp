@@ -9,11 +9,21 @@ public:
 
 
 	void onUpdate() override {
+		//Once per frame
 		//HZ_CLIENT_INFO("ExampleLayer::Update");
+		if (Hazel::Input::isKeyPressed(HZ_KEY_TAB)) {
+			HZ_CLIENT_INFO("Tab key pressed!");
+		}
 	}
 
 	void onEvent(Hazel::Event& event) override {
-		HZ_CLIENT_TRACE("{0}", event);
+		//As events happen, callbacks generate events which propagate to the application
+		//HZ_CLIENT_TRACE("{0}", event);
+
+		if (event.GetEventType() == Hazel::EventType::kKeyPressed) {
+			Hazel::KeyPressedEvent& e = static_cast<Hazel::KeyPressedEvent& >(event);
+			HZ_CLIENT_TRACE("{0}", static_cast<char>(e.GetKeyCode()));
+		}
 	}
 };
 
