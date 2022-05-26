@@ -166,7 +166,6 @@
     <ClInclude Include="src\Hazel\window.h" />
     <ClInclude Include="src\hazel.h" />
     <ClInclude Include="src\hzpch.h" />
-    <ClInclude Include="src\platform\OpenGL\imguiOpenGLRenderer.h" />
     <ClInclude Include="src\platform\Windows\windowsInput.h" />
     <ClInclude Include="src\platform\Windows\windowsWindow.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
@@ -587,6 +586,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Hazel\application.cpp" />
+    <ClCompile Include="src\Hazel\imgui\imguiBuild.cpp" />
     <ClCompile Include="src\Hazel\imgui\imguiLayer.cpp" />
     <ClCompile Include="src\Hazel\layer.cpp" />
     <ClCompile Include="src\Hazel\layerStack.cpp" />
@@ -594,7 +594,6 @@
     <ClCompile Include="src\hzpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\platform\OpenGL\imguiOpenGLRenderer.cpp" />
     <ClCompile Include="src\platform\Windows\windowsInput.cpp" />
     <ClCompile Include="src\platform\Windows\windowsWindow.cpp" />
   </ItemGroup>

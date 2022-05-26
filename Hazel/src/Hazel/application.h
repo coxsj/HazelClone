@@ -6,6 +6,8 @@
 #include "Hazel/events/event.h"
 #include "Hazel/events/applicationEvent.h"
 
+#include "Hazel/imgui/imguiLayer.h"
+
 namespace Hazel {
 	class HAZEL_API Application
 	{
@@ -18,11 +20,14 @@ namespace Hazel {
 
 		void PushLayer(Layer* layer);
 		void PushOverlay(Layer* layer);
-
-		static Application& Get() { return *s_instance; }
+		
 		Window& getWindow() { return *m_Window; }
+		
+		static Application& Get() { return *s_instance; }
+		
 	private:
 		std::unique_ptr<Window> m_Window;
+		ImguiLayer* m_ImGuiLayer;
 		bool m_Running;
 		LayerStack m_layerStack;
 		static Application* s_instance;

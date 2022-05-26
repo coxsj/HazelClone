@@ -5,7 +5,6 @@
 #include "glad/glad.h"
 #include "Hazel/input.h"
 
-
 namespace Hazel {
 
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
@@ -17,8 +16,11 @@ namespace Hazel {
 		s_instance = this;
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->setEventCallback(BIND_EVENT_FN(onEvent));
+		m_ImGuiLayer = new  ImguiLayer;
+		PushOverlay(m_ImGuiLayer);
 		std::cout << "Welcome to HazelClone Game Engine\n";
 	}
+
 	void Application::onEvent(Event& e)
 	{
 		EventDispatcher  dispatcher(e);
@@ -49,7 +51,13 @@ namespace Hazel {
 			glClearColor(1, 0, 1, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
 			for (Layer* layer : m_layerStack)
-				layer->onUpdate();
+				layer->onUpdate(); //this is where we submit things for rendering
+
+			//This bock will run on the render thread
+			m_ImGuiLayer->begin();
+			for (Layer* layer : m_layerStack)
+				layer->onImGuiRender();
+			m_ImGuiLayer->end();
 
 			//Print mouse pos to log
 			//auto [x, y] = Input::getMousePosition();

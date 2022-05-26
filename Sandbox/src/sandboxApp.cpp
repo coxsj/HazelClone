@@ -2,6 +2,7 @@
 #include "hzpch.h"
 
 #include "hazel.h"
+#include "imgui/imgui.h"
 
 class ExampleLayer : public Hazel::Layer {
 public:
@@ -14,6 +15,12 @@ public:
 		if (Hazel::Input::isKeyPressed(HZ_KEY_TAB)) {
 			HZ_CLIENT_INFO("Tab key pressed!");
 		}
+	}
+
+	virtual void onImGuiRender() override {
+		//ImGui::Begin("Test");
+		//ImGui::Text("Hello world");
+		//ImGui::End();
 	}
 
 	void onEvent(Hazel::Event& event) override {
@@ -34,7 +41,6 @@ public:
 	Sandbox() { 
 		std::cout << "Sandbox ctor\n"; 
 		PushLayer(new ExampleLayer());
-		PushOverlay(new Hazel::ImguiLayer());
 	}
 	~Sandbox(){}
 };
