@@ -18,9 +18,9 @@ public:
 	}
 
 	virtual void onImGuiRender() override {
-		//ImGui::Begin("Test");
-		//ImGui::Text("Hello world");
-		//ImGui::End();
+		ImGui::Begin("Test");
+		ImGui::Text("Hello world");
+		ImGui::End();
 	}
 
 	void onEvent(Hazel::Event& event) override {
