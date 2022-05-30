@@ -1344,6 +1344,7 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
+    <ClInclude Include="src\platform\OpenGL\openGLContext.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Hazel\application.cpp">
@@ -1373,5 +1374,6 @@
     <ClCompile Include="src\platform\Windows\windowsWindow.cpp">
       <Filter>src\platform\Windows</Filter>
     </ClCompile>
+    <ClCompile Include="src\platform\OpenGL\openGLContext.cpp" />
   </ItemGroup>
 </Project>

@@ -1,9 +1,11 @@
 #pragma once
 
-#include "hzpch.h"
+//#include "hzpch.h"
+
+#include "GLFW/glfw3.h"
 
 #include "Hazel/window.h"
-#include "GLFW/glfw3.h"
+#include "Hazel/Renderer/graphicsContext.h"
 
 namespace Hazel {
 	class WindowsWindow : public Window {
@@ -18,13 +20,14 @@ namespace Hazel {
 		void setEventCallback(const EventCallbackFn& callback) override;
 		void setVSync(bool enabled) override;
 		
-		virtual void* getNativeWindow() const override { return m_Window; }
+		virtual void* getNativeWindow() const override { return m_window; }
 	private:
 		virtual void init(const WindowProps& props);
 		virtual void shutdown();
 
 	private:
-		GLFWwindow* m_Window;
+		GLFWwindow* m_window;
+		GraphicsContext* m_context;
 
 		// This struct will be used to pass data to GLFW during Window events
 		struct WindowData {
