@@ -157,6 +157,7 @@
     <ClInclude Include="src\Hazel\window.h" />
     <ClInclude Include="src\hazel.h" />
     <ClInclude Include="src\hzpch.h" />
+    <ClInclude Include="src\platform\OpenGL\openGLContext.h" />
     <ClInclude Include="src\platform\Windows\windowsInput.h" />
     <ClInclude Include="src\platform\Windows\windowsWindow.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
@@ -585,6 +586,7 @@
     <ClCompile Include="src\hzpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\platform\OpenGL\openGLContext.cpp" />
     <ClCompile Include="src\platform\Windows\windowsInput.cpp" />
     <ClCompile Include="src\platform\Windows\windowsWindow.cpp" />
   </ItemGroup>

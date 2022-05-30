@@ -1,10 +1,11 @@
 #include "hzpch.h"
 #include "windowsWindow.h"
+
 #include "Hazel/events/applicationEvent.h"
 #include "Hazel/events/keyEvent.h"
 #include "Hazel/events/mouseEvent.h"
 
-#include "glad/glad.h"
+#include "platform/OpenGL/openGLContext.h"
 
 namespace Hazel {
 	//Global variables
@@ -41,21 +42,20 @@ namespace Hazel {
 			glfwSetErrorCallback(GLFWErrorCallback);
 			s_GLFWInitialized = true;
 		}
+
 		//Create the window
-		m_Window = glfwCreateWindow(static_cast<int>(props.width), static_cast<int>(props.height),
+		m_window = glfwCreateWindow(static_cast<int>(props.width), static_cast<int>(props.height),
 			m_Data.title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(m_Window);
-		//Initialize glad
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		HZ_CORE_ASSERT(status, "Could not initialize glad!");
+		m_context = new OpenGLContext(m_window);
+		m_context->init();
 
 		// User pointer used in event callbacks
-		glfwSetWindowUserPointer(m_Window, &m_Data);
+		glfwSetWindowUserPointer(m_window, &m_Data);
 		setVSync(true);
 
 		// Set GLFW callbacks
 		// ===============
-		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height) {
+		glfwSetWindowSizeCallback(m_window, [](GLFWwindow* window, int width, int height) {
 			// When a window size event occurs on m_Window, GLFW runs this lambda function 
 			// i.e GLFW executes this window resize event callback.
 			// This routine creates a WindowResizeEvent event and then calls the event callback 
@@ -70,12 +70,12 @@ namespace Hazel {
 			WindowResizeEvent event(width, height);
 			data.eventCallback(event);
 		});
-		glfwSetWindowCloseCallback(m_Window, [](GLFWwindow* window) {
+		glfwSetWindowCloseCallback(m_window, [](GLFWwindow* window) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 			WindowCloseEvent event;
 			data.eventCallback(event);
 		});
-		glfwSetKeyCallback(m_Window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
+		glfwSetKeyCallback(m_window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 			//TODO convert GLFW keycode to HAZEL keycode i.e. graphics library independent
 			switch (action) {
@@ -105,7 +105,7 @@ namespace Hazel {
 			}
 		});
 
-		glfwSetCharCallback(m_Window, [](GLFWwindow* window, unsigned int keycode)
+		glfwSetCharCallback(m_window, [](GLFWwindow* window, unsigned int keycode)
 			{
 				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
@@ -114,7 +114,7 @@ namespace Hazel {
 			});
 
 
-		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods) {
+		glfwSetMouseButtonCallback(m_window, [](GLFWwindow* window, int button, int action, int mods) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 			switch (action) {
 			case GLFW_PRESS:
@@ -134,12 +134,12 @@ namespace Hazel {
 				break;
 			}
 		});
-		glfwSetScrollCallback(m_Window, [](GLFWwindow* window, double xOffset, double yOffset) {
+		glfwSetScrollCallback(m_window, [](GLFWwindow* window, double xOffset, double yOffset) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 			MouseScrolledEvent event(static_cast<float>(xOffset), static_cast<float>(yOffset));
 			data.eventCallback(event);
 		});
-		glfwSetCursorPosCallback(m_Window, [](GLFWwindow* window, double xPos, double yPos) {
+		glfwSetCursorPosCallback(m_window, [](GLFWwindow* window, double xPos, double yPos) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 			MouseMovedEvent event(static_cast<float>(xPos), static_cast<float>(yPos));
 			data.eventCallback(event);
@@ -150,7 +150,7 @@ namespace Hazel {
 	}
 	void WindowsWindow::onUpdate() {
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		m_context->swapBuffers();
 	}
 	void WindowsWindow::setEventCallback(const EventCallbackFn& callback)  {
 		m_Data.eventCallback = callback;
@@ -162,7 +162,7 @@ namespace Hazel {
 		m_Data.VSync = enabled;
 	}
 	void WindowsWindow::shutdown() {
-		glfwDestroyWindow(m_Window);
+		glfwDestroyWindow(m_window);
 	}
 	
 }
