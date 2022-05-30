@@ -25,6 +25,8 @@ namespace Hazel {
 		
 		static Application& Get() { return *s_instance; }
 		
+		unsigned int m_vertexArray, m_vertexBuffer, m_indexBuffer;
+		
 	private:
 		std::unique_ptr<Window> m_Window;
 		ImguiLayer* m_ImGuiLayer;
